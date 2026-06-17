@@ -21,7 +21,7 @@
 <body>
 
 <h1>Datenschutzerklärung</h1>
-<p class="meta">App: <strong>PocketCoach</strong> · Stand: <strong>2. Juni 2026</strong></p>
+<p class="meta">App: <strong>PocketCoach</strong> · Stand: <strong>17. Juni 2026</strong></p>
 
 <h2>1. Verantwortlicher</h2>
 <p>
@@ -37,25 +37,29 @@
 
 <h2>2. Kurzfassung</h2>
 <p>
-  <strong>PocketCoach erhebt keine personenbezogenen Daten und überträgt
-  keine Daten an Server.</strong> Die App funktioniert vollständig offline.
-  Alle Eingaben (Spielerprofile, Bälle, Ölbilder, Würfe) werden ausschließlich
+  <strong>PocketCoach erhebt keine personenbezogenen Daten.</strong> Die App
+  läuft im Normalbetrieb offline. Optional kann die Ball-Bibliothek per
+  Knopfdruck aus einem öffentlichen GitHub-Repo aktualisiert werden — dabei
+  wird (wie bei jedem Webaufruf) deine IP-Adresse an GitHub übertragen. Alle
+  Eingaben (Spielerprofile, Bälle, Ölbilder, Würfe) werden ausschließlich
   lokal auf deinem Gerät gespeichert.
 </p>
 
 <h2>3. Lokale Datenspeicherung</h2>
 <p>
   PocketCoach speichert die folgenden Daten lokal auf deinem Gerät im
-  internen Speicher der App (technisch: <code>localStorage</code> des
-  Android-WebView):
+  internen Speicher der App (technisch: <code>localStorage</code> und
+  <code>IndexedDB</code> des Android-WebView):
 </p>
 <ul>
   <li>Spielerprofile (selbst gewählter Name, Spielstärke-Einstellungen)</li>
   <li>Eingegebene Abgaben/Releases (Drehachse, Tilt, Rotation usw.)</li>
   <li>Hinterlegte Bälle, Layouts und Taschen-Zuweisungen</li>
   <li>Eigene und vordefinierte Ölbilder</li>
-  <li>UI-Einstellungen (Sprache, Karten-Sichtbarkeit, Theme)</li>
+  <li>UI-Einstellungen (Sprache, Karten-Sichtbarkeit, Design)</li>
   <li>Zuletzt simulierte Würfe und Bahn-Zustand</li>
+  <li>Ball-Bibliothek-Cache (gespiegelter Stand des optionalen Online-Repos)</li>
+  <li>Heruntergeladene Ball-Fotos (für Offline-Anzeige im IndexedDB-Cache)</li>
 </ul>
 <p>
   Diese Daten verlassen dein Gerät nicht. Sie werden weder an den Entwickler
@@ -72,27 +76,61 @@
   Datei-Berechtigungen.
 </p>
 
-<h2>5. Berechtigungen</h2>
+<h2>5. Optionaler Online-Abruf (Ball-Bibliothek)</h2>
 <p>
-  PocketCoach fordert keine besonderen Berechtigungen an. Insbesondere
-  nutzt die App <strong>keinen</strong>:
+  Seit Version 1.4.0 kann die Ball-Bibliothek per Knopfdruck im
+  Bibliothek-Auswahldialog aus einem öffentlichen GitHub-Repo aktualisiert
+  werden. <strong>Standardmäßig läuft die App offline</strong> — das Update
+  findet <strong>nur statt, wenn du den Knopf „Aktualisieren" drückst</strong>.
+</p>
+<p><strong>Wohin geht die Anfrage?</strong></p>
+<ul>
+  <li><code>raw.githubusercontent.com</code> (GitHub Inc., USA)</li>
+  <li>Pfade: <code>/BeckerApps/pocketcoach-assets/main/balls.json</code>
+      (Daten) und <code>/main/balls/&lt;key&gt;.webp</code> (Ball-Fotos)</li>
+  <li>Datenschutz GitHub:
+      <a href="https://docs.github.com/de/site-policy/privacy-policies/github-general-privacy-statement">docs.github.com/de/site-policy/privacy-policies/github-general-privacy-statement</a></li>
+</ul>
+<p><strong>Was wird übertragen?</strong></p>
+<ul>
+  <li>Technisch bedingt: deine <strong>IP-Adresse</strong>, der User-Agent
+      (Standard-Kennung des Android-WebView) und der Anfrage-Zeitpunkt — das
+      übermittelt jeder Web-Request.</li>
+  <li><strong>Nicht übertragen</strong>: keine Geräte-Kennung, keine
+      Nutzungsdaten, keine personenbezogenen Daten, keine Cookies, keine
+      Tracking-IDs.</li>
+</ul>
+<p>
+  <strong>Rechtsgrundlage:</strong> Art. 6 Abs. 1 lit. a DSGVO — deine
+  Einwilligung durch aktive Bestätigung des „Aktualisieren"-Knopfes.
+</p>
+<p>
+  <strong>Hinweis:</strong> Der heruntergeladene Stand wird lokal gespeichert
+  (siehe Abschnitt 3), sodass die Bibliothek danach wieder offline funktioniert.
+</p>
+
+<h2>6. Berechtigungen</h2>
+<p>
+  PocketCoach fordert die Android-Berechtigung <strong>INTERNET</strong> an.
+  Sie wird <strong>ausschließlich</strong> für den optionalen Update-Knopf
+  der Ball-Bibliothek verwendet (siehe Abschnitt 5). Es findet
+  <strong>keine</strong> automatische Verbindung zum Internet statt.
+  Insbesondere nutzt die App <strong>keinen</strong>:
 </p>
 <ul>
   <li>Standortzugriff</li>
   <li>Kamera- oder Mikrofonzugriff</li>
   <li>Kontakt-, Kalender- oder Telefondaten</li>
-  <li>Internetzugang (technisch theoretisch verfügbar, aber von der App
-      nicht genutzt)</li>
 </ul>
 
-<h2>6. Cookies, Tracking, Werbung</h2>
+<h2>7. Cookies, Tracking, Werbung</h2>
 <p>
   PocketCoach verwendet <strong>keine Cookies</strong>, <strong>kein
   Tracking</strong>, <strong>keine Analytics-SDKs</strong> (z.B. Google
   Analytics, Firebase) und <strong>keine Werbenetzwerke</strong>.
 </p>
 
-<h2>7. Verwendete Drittanbieter-Komponenten</h2>
+<h2>8. Verwendete Drittanbieter-Komponenten</h2>
 <p>
   In der App ist die Bibliothek <strong>pdf.js</strong> (Mozilla, Apache-
   Lizenz 2.0) enthalten. Sie wird ausschließlich offline für das Lesen
@@ -100,7 +138,7 @@
   Internet.
 </p>
 
-<h2>8. Google Play Store</h2>
+<h2>9. Google Play Store</h2>
 <p>
   Diese App wird über den Google Play Store verteilt. Beim Download und bei
   der Nutzung des Play Stores erhebt Google möglicherweise Daten (z.B.
@@ -110,7 +148,7 @@
   <a href="https://policies.google.com/privacy">policies.google.com/privacy</a>
 </p>
 
-<h2>9. Deine Rechte (DSGVO Art. 15 ff.)</h2>
+<h2>10. Deine Rechte (DSGVO Art. 15 ff.)</h2>
 <p>
   Da PocketCoach keine personenbezogenen Daten erhebt oder verarbeitet,
   hat der Entwickler auch keine personenbezogenen Daten von dir
@@ -129,15 +167,15 @@
   <li>Die App deinstallierst (dabei werden alle lokalen Daten entfernt).</li>
 </ul>
 
-<h2>10. Änderungen dieser Datenschutzerklärung</h2>
+<h2>11. Änderungen dieser Datenschutzerklärung</h2>
 <p>
-  Bei Erweiterungen der App (z.B. zukünftige Online-Funktionen,
-  Crash-Reporting, Konten oder Werbung) wird diese Datenschutzerklärung
-  aktualisiert und entsprechend in der App bzw. im Play-Store-Listing
+  Bei weiteren Erweiterungen der App (Crash-Reporting, Konten, Werbung
+  o.Ä.) wird diese Datenschutzerklärung aktualisiert und entsprechend in
+  der App bzw. im Play-Store-Listing
   veröffentlicht.
 </p>
 
-<h2>11. Kontakt</h2>
+<h2>12. Kontakt</h2>
 <p>
   Bei Fragen zum Datenschutz wende dich bitte per E-Mail an
   <a href="mailto:BeckerApps26@gmail.com">BeckerApps26@gmail.com</a>.

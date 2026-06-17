@@ -21,7 +21,7 @@
 <body>
 
 <h1>Privacy Policy</h1>
-<p class="meta">App: <strong>PocketCoach</strong> · Effective date: <strong>2 June 2026</strong></p>
+<p class="meta">App: <strong>PocketCoach</strong> · Effective date: <strong>17 June 2026</strong></p>
 
 <h2>1. Data Controller</h2>
 <p>
@@ -37,16 +37,19 @@
 
 <h2>2. Summary</h2>
 <p>
-  <strong>PocketCoach does not collect any personal data and does not
-  transmit any data to servers.</strong> The app works fully offline.
-  All your input (player profiles, balls, oil patterns, throws) is stored
-  exclusively on your device.
+  <strong>PocketCoach does not collect any personal data.</strong> The app
+  runs offline in normal use. Optionally, the ball library can be updated
+  from a public GitHub repository by tapping a button — this transmits your
+  IP address to GitHub (as does any web request). All your input (player
+  profiles, balls, oil patterns, throws) is stored exclusively on your
+  device.
 </p>
 
 <h2>3. Local Data Storage</h2>
 <p>
   PocketCoach stores the following data locally in the app's internal
-  storage (technically: <code>localStorage</code> of the Android WebView):
+  storage (technically: <code>localStorage</code> and <code>IndexedDB</code>
+  of the Android WebView):
 </p>
 <ul>
   <li>Player profiles (self-chosen name, skill settings)</li>
@@ -55,6 +58,8 @@
   <li>Custom and preset oil patterns</li>
   <li>UI settings (language, card visibility, theme)</li>
   <li>Most recent simulated throws and lane state</li>
+  <li>Ball library cache (mirrored state of the optional online repository)</li>
+  <li>Downloaded ball photos (for offline display in the IndexedDB cache)</li>
 </ul>
 <p>
   This data never leaves your device. It is not transmitted to the
@@ -70,34 +75,66 @@
   require special file permissions.
 </p>
 
-<h2>5. Permissions</h2>
+<h2>5. Optional Online Access (Ball Library)</h2>
 <p>
-  PocketCoach requests no special permissions. In particular, the app
-  uses <strong>none</strong> of the following:
+  Since version 1.4.0, the ball library can be updated from a public GitHub
+  repository by tapping a button in the library picker.
+  <strong>By default the app runs offline</strong> — the update
+  <strong>only happens when you press the "Update" button</strong>.
+</p>
+<p><strong>Where does the request go?</strong></p>
+<ul>
+  <li><code>raw.githubusercontent.com</code> (GitHub Inc., USA)</li>
+  <li>Paths: <code>/BeckerApps/pocketcoach-assets/main/balls.json</code>
+      (data) and <code>/main/balls/&lt;key&gt;.webp</code> (ball photos)</li>
+  <li>GitHub privacy:
+      <a href="https://docs.github.com/en/site-policy/privacy-policies/github-general-privacy-statement">docs.github.com/en/site-policy/privacy-policies/github-general-privacy-statement</a></li>
+</ul>
+<p><strong>What is transmitted?</strong></p>
+<ul>
+  <li>Technically required: your <strong>IP address</strong>, the User-Agent
+      (standard Android WebView identifier) and the request timestamp —
+      this is transmitted by any web request.</li>
+  <li><strong>Not transmitted</strong>: no device identifier, no usage data,
+      no personal data, no cookies, no tracking IDs.</li>
+</ul>
+<p>
+  <strong>Legal basis:</strong> Art. 6 (1)(a) GDPR — your consent through
+  active confirmation of the "Update" button.
+</p>
+<p>
+  <strong>Note:</strong> The downloaded data is stored locally (see section
+  3), so the library works offline again afterwards.
+</p>
+
+<h2>6. Permissions</h2>
+<p>
+  PocketCoach requests the Android <strong>INTERNET</strong> permission. It
+  is used <strong>exclusively</strong> for the optional ball library update
+  (see section 5). <strong>No</strong> automatic internet connection takes
+  place. In particular, the app uses <strong>none</strong> of the following:
 </p>
 <ul>
   <li>Location access</li>
   <li>Camera or microphone access</li>
   <li>Contacts, calendar or phone data</li>
-  <li>Internet access (technically available on the device, but not used
-      by the app)</li>
 </ul>
 
-<h2>6. Cookies, Tracking, Advertising</h2>
+<h2>7. Cookies, Tracking, Advertising</h2>
 <p>
   PocketCoach uses <strong>no cookies</strong>, <strong>no tracking</strong>,
   <strong>no analytics SDKs</strong> (e.g. Google Analytics, Firebase) and
   <strong>no ad networks</strong>.
 </p>
 
-<h2>7. Third-Party Components</h2>
+<h2>8. Third-Party Components</h2>
 <p>
   The app bundles the <strong>pdf.js</strong> library (Mozilla, Apache
   License 2.0). It is used exclusively offline for reading imported PDF
   files and does not communicate with the internet.
 </p>
 
-<h2>8. Google Play Store</h2>
+<h2>9. Google Play Store</h2>
 <p>
   This app is distributed through the Google Play Store. When you download
   and use the Play Store, Google may collect data (e.g. device ID,
@@ -107,7 +144,7 @@
   <a href="https://policies.google.com/privacy">policies.google.com/privacy</a>
 </p>
 
-<h2>9. Your Rights (GDPR Art. 15 ff.)</h2>
+<h2>10. Your Rights (GDPR Art. 15 ff.)</h2>
 <p>
   Since PocketCoach does not collect or process any personal data, the
   developer holds no personal data of yours that could be subject to rights
@@ -124,14 +161,14 @@
   <li>Uninstalling the app (this removes all local data).</li>
 </ul>
 
-<h2>10. Changes to This Policy</h2>
+<h2>11. Changes to This Policy</h2>
 <p>
-  If the app is extended (e.g. future online features, crash reporting,
-  accounts or ads), this privacy policy will be updated and published
-  accordingly in the app or Play Store listing.
+  If the app is extended further (crash reporting, accounts, ads, etc.),
+  this privacy policy will be updated and published accordingly in the app
+  or Play Store listing.
 </p>
 
-<h2>11. Contact</h2>
+<h2>12. Contact</h2>
 <p>
   For privacy-related questions, please contact
   <a href="mailto:BeckerApps26@gmail.com">BeckerApps26@gmail.com</a>.
